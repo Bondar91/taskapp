@@ -1,5 +1,7 @@
 # taskapp
 
+Application for moving tasks on the board
+
 ## Project setup
 ```
 npm install
