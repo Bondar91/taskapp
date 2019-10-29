@@ -1,70 +1,70 @@
-import { uuid } from './utils';
+import { uuid } from "./utils";
 
 export default {
-  name: 'workshop',
+  name: "workshop",
   columns: [
     {
-      status: 'oczekujące',
+      status: "oczekujące",
       tasks: [
         {
-          name: 'first task',
-          descirption: '',
+          name: "first task",
+          description: "",
           id: uuid(),
-          type: 'feature',
+          type: "feature"
         },
         {
-          name: 'second task',
-          descirption: 'Lorem ipsum dolor sit amet.',
+          name: "second task",
+          description: "Lorem ipsum dolor sit amet.",
           id: uuid(),
-          type: 'bugfix',
+          type: "bugfix"
         },
         {
-          name: 'thirty task',
-          descirption: 'Lorem, ipsum dolor.',
+          name: "thirty task",
+          description: "Lorem, ipsum dolor.",
           id: uuid(),
-          type: 'default',
-        },
-      ],
+          type: "default"
+        }
+      ]
     },
     {
-      status: 'w realizacji',
+      status: "w realizacji",
       tasks: [
         {
-          name: 'first task',
-          descirption: '',
+          name: "first task",
+          description: "",
           id: uuid(),
-          type: 'default',
+          type: "default"
         },
         {
-          name: 'second task',
-          descirption: 'Lorem ipsum dolor sit amet.',
+          name: "second task",
+          description: "Lorem ipsum dolor sit amet.",
           id: uuid(),
-          type: 'bugfix',
+          type: "bugfix"
         },
         {
-          name: 'thirty task',
-          descirption: 'Lorem, ipsum dolor.',
+          name: "thirty task",
+          description: "Lorem, ipsum dolor.",
           id: uuid(),
-          type: 'feature',
-        },
-      ],
+          type: "feature"
+        }
+      ]
     },
     {
-      status: 'zakończone',
+      status: "zakończone",
       tasks: [
         {
-          name: 'first task',
-          descirption: '',
+          name: "first task",
+          description: "",
           id: uuid(),
-          type: 'feature',
+          type: "feature"
         },
         {
-          name: 'second task',
-          descirption: 'Lorem ipsum dolor sit amet.',
+          name: "second task",
+          description: "Lorem ipsum dolor sit amet.",
           id: uuid(),
-          type: 'feature',
-        },
-      ],
-    },
-  ],
+          type: "feature"
+        }
+      ]
+    }
+  ]
 };
