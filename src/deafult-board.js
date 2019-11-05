@@ -9,7 +9,7 @@ export default {
         {
           name: "first task",
           description: "",
-          id: uuid(),
+          id: "1s",
           type: "feature"
         },
         {

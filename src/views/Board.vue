@@ -1,11 +1,16 @@
 <template>
   <div class="board">
     <div class="column-wrapper">
-      <div class="column" v-for="column of board.columns" :key="column.id">
+      <div class="column" v-for="(column, $indexColumn) of board.columns" :key="$indexColumn">
         <div class="column-header">{{column.status}}</div>
 
         <div class="column-body">
-          <div class="task" v-for="task of column.tasks" :key="task.id">
+          <div
+            class="task"
+            v-for="(task, $indexTask) of column.tasks"
+            :key="$indexTask"
+            @click="goToTask(task)"
+          >
             <h1 class="task-title">{{task.name}}</h1>
             <p class="task-description">{{task.description}}</p>
             <p class="task-type">{{task.type}}</p>
@@ -14,6 +19,10 @@
         </div>
       </div>
     </div>
+
+    <div class="task-wrapper" v-if="isTaskOpen">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -21,7 +30,17 @@
 import { mapState } from "vuex";
 
 export default {
-  computed: mapState(["board"])
+  computed: {
+    ...mapState(["board"]),
+    isTaskOpen() {
+      return this.$route.name === "task";
+    }
+  },
+  methods: {
+    goToTask(task) {
+      this.$router.push({ name: "task", params: { id: task.id } });
+    }
+  }
 };
 </script>
 
@@ -44,21 +63,21 @@ export default {
 
 .column {
   min-width: 350px;
+  width: 100%;
   background-color: #cbd5e0;
   padding: 20px;
   margin-right: 25px;
   border-radius: 5px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
+  &:last-child {
+    margin-right: 0;
+  }
   &-header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     font-weight: bold;
-  }
-
-  &-body {
   }
 }
 
@@ -70,6 +89,7 @@ export default {
   margin-bottom: 20px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
 
   &-title {
     width: 100%;
@@ -87,5 +107,10 @@ export default {
   &-type {
     width: 100%;
   }
+
+  /* &-wrapper {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+  } */
 }
 </style>
