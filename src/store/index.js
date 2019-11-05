@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import defaultBoard from "../deafult-board";
+import { uuid } from "../utils";
 
 Vue.use(Vuex);
 
@@ -16,7 +17,7 @@ const store = new Vuex.Store({
         // eslint-disable-next-line guard-for-in
         // eslint-disable-next-line no-restricted-syntax
         for (const column of state.board.columns) {
-        //   console.log(column);
+          //   console.log(column);
           // eslint-disable-next-line no-restricted-syntax
           for (const task of column.tasks) {
             console.log(task.id === id);
@@ -28,7 +29,15 @@ const store = new Vuex.Store({
       };
     }
   },
-  mutations: {},
+  mutations: {
+    CREATE_TASK(state, { tasks, description, type }) {
+      tasks.push({
+        description,
+        id: uuid(),
+        type
+      });
+    }
+  },
   actions: {},
   modules: {}
 });
