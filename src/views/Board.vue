@@ -38,11 +38,24 @@
     </div>
 
     <div class="column-wrapper">
-      <div class="column" v-for="(column, $indexColumn) of board.columns" :key="$indexColumn">
+      <div
+        class="column"
+        v-for="(column, $indexColumn) of board.columns"
+        :key="$indexColumn"
+        @drop="moveTask($event, column.tasks)"
+        @dragover.prevent
+        @dragenter.prevent
+      >
         <div class="column-header">{{column.status}}</div>
 
         <div class="column-body">
-          <div class="task" v-for="(task, $indexTask) of column.tasks" :key="$indexTask">
+          <div
+            class="task"
+            v-for="(task, $indexTask) of column.tasks"
+            :key="$indexTask"
+            draggable
+            @dragstart="pickupTask($event, $indexTask, $indexColumn)"
+          >
             <p class="task-description">{{task.description}}</p>
             <p class="task-type">{{task.type}}</p>
             <button @click="goToTask(task)">Edit</button>
@@ -100,6 +113,24 @@ export default {
       this.$store.commit("DELETE_TASK", {
         task,
         indexColumn
+      });
+    },
+    pickupTask(event, indexTask, fromIndexStatus) {
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.dropEffect = "move";
+
+      event.dataTransfer.setData("index-task", indexTask);
+      event.dataTransfer.setData("from-index-status", fromIndexStatus);
+    },
+    moveTask(event, toTasks) {
+      const fromIndexStatus = event.dataTransfer.getData("from-index-status");
+      const fromTasks = this.board.columns[fromIndexStatus].tasks;
+      const taskIndex = event.dataTransfer.getData("index-task");
+
+      this.$store.commit("MOVE_TASK", {
+        fromTasks,
+        toTasks,
+        taskIndex
       });
     }
   }

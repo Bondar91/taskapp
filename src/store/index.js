@@ -45,6 +45,10 @@ const store = new Vuex.Store({
       state.board.columns[indexColumn].tasks = state.board.columns[indexColumn].tasks.filter(
         id => id !== task
       );
+    },
+    MOVE_TASK(state, { fromTasks, toTasks, indexTask }) {
+      const taskToMove = fromTasks.splice(indexTask, 1)[0];
+      toTasks.push(taskToMove);
     }
   },
   actions: {},
