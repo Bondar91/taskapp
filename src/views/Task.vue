@@ -1,7 +1,29 @@
 <template>
   <div class="task-view">
     <div class="task-view-wrapper">
-      {{ task.name }}
+      <h1 class="heading">Create new task</h1>
+      <div class="form">
+        <div class="form-group">
+          <label for="description" class="form-label">Description Task</label>
+          <textarea
+            name="description"
+            ref="description"
+            class="form-textarea"
+            rows="4"
+            :value="task.description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="type" class="form-label">Type Task</label>
+          <select name="type" ref="type" class="form-select" :value="task.type">
+            <option value="default">default</option>
+            <option value="bugfix">bugfix</option>
+            <option value="feature">feature</option>
+          </select>
+        </div>
+
+        <button class="btn-create" @click="updateTask(task.description, task.type)">Save</button>
+      </div>
       <span class="close" @click="close">X</span>
     </div>
   </div>
@@ -11,6 +33,12 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      description: "",
+      type: ""
+    };
+  },
   computed: {
     ...mapGetters(["getTask"]),
     task() {
@@ -19,14 +47,21 @@ export default {
   },
   methods: {
     close() {
-      console.log("test");
       this.$router.push({ name: "board" });
+    },
+    updateTask() {
+      this.$store.commit("UPDATE_TASK", {
+        task: this.task,
+        description: this.$refs.description.value,
+        type: this.$refs.type.value
+      });
+      this.close();
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .task-view {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.2);
@@ -56,5 +91,64 @@ export default {
   top: 10px;
   font-size: 2.2rem;
   cursor: pointer;
+}
+
+.btn-create {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 0.5rem 2.75rem;
+  line-height: 1.5;
+  border-radius: 0.5rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 2rem;
+  background-color: #cbd5e0;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  &-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  &-textarea,
+  &-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    resize: vertical;
+  }
+
+  &-textarea {
+    min-height: 10rem;
+  }
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 </style>

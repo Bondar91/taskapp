@@ -21,7 +21,7 @@
           <div class="form-group">
             <label for="type" class="form-label">Type Task</label>
             <select name="type" class="form-select" v-model="type">
-              <option value="defualt">defualt</option>
+              <option value="default">default</option>
               <option value="bugfix">bugfix</option>
               <option value="feature">feature</option>
             </select>
@@ -98,6 +98,7 @@ export default {
       });
 
       this.description = "";
+      this.close();
     }
   }
 };

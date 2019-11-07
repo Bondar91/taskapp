@@ -7,8 +7,9 @@ export default {
       status: "oczekujące",
       tasks: [
         {
-          description: "",
-          id: "1s",
+          description:
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, atque quaerat! Repudiandae reprehenderit culpa, fuga reiciendis veritatis nostrum suscipit animi.",
+          id: uuid(),
           type: "feature"
         },
         {

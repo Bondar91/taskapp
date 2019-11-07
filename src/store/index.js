@@ -36,6 +36,11 @@ const store = new Vuex.Store({
         id: uuid(),
         type
       });
+    },
+    UPDATE_TASK(state, { task, description, type }) {
+      task.description = description;
+      task.type = type;
+      //   task[key] = value;
     }
   },
   actions: {},
