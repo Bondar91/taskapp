@@ -40,11 +40,11 @@ const store = new Vuex.Store({
       task.description = description;
       task.type = type;
     },
-    DELETE_TASK(state, { indexColumn, indexTask }) {
-      //   console.log(this.tasks);
-      //   Vue.delete(state.board.columns[indexColumn].tasks[indexTask]);
-      //   console.log(state.board.columns[indexColumn].tasks);
-      state.board.columns[indexColumn].tasks.splice(indexTask, 1);
+    DELETE_TASK(state, { task, indexColumn }) {
+      console.log(state.board.columns[indexColumn]);
+      state.board.columns[indexColumn].tasks = state.board.columns[indexColumn].tasks.filter(
+        id => id !== task
+      );
     }
   },
   actions: {},

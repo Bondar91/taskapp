@@ -46,7 +46,7 @@
             <p class="task-description">{{task.description}}</p>
             <p class="task-type">{{task.type}}</p>
             <button @click="goToTask(task)">Edit</button>
-            <button @click="removeTask($indexColumn,$indexTask)">Remove</button>
+            <button @click="removeTask(task,$indexColumn)">Remove</button>
             <!-- {{task}} -->
           </div>
         </div>
@@ -96,10 +96,10 @@ export default {
       this.description = "";
       this.close();
     },
-    removeTask(indexColumn, indexTask) {
+    removeTask(task, indexColumn) {
       this.$store.commit("DELETE_TASK", {
-        indexColumn,
-        indexTask
+        task,
+        indexColumn
       });
     }
   }
