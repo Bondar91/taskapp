@@ -42,14 +42,11 @@
         <div class="column-header">{{column.status}}</div>
 
         <div class="column-body">
-          <div
-            class="task"
-            v-for="(task, $indexTask) of column.tasks"
-            :key="$indexTask"
-            @click="goToTask(task)"
-          >
+          <div class="task" v-for="(task, $indexTask) of column.tasks" :key="$indexTask">
             <p class="task-description">{{task.description}}</p>
             <p class="task-type">{{task.type}}</p>
+            <button @click="goToTask(task)">Edit</button>
+            <button @click="removeTask($indexColumn,$indexTask)">Remove</button>
             <!-- {{task}} -->
           </div>
         </div>
@@ -90,7 +87,6 @@ export default {
       this.isOpenCreateTask = false;
     },
     createTask(tasks) {
-      console.log(this.type);
       this.$store.commit("CREATE_TASK", {
         tasks,
         description: this.description,
@@ -99,6 +95,12 @@ export default {
 
       this.description = "";
       this.close();
+    },
+    removeTask(indexColumn, indexTask) {
+      this.$store.commit("DELETE_TASK", {
+        indexColumn,
+        indexTask
+      });
     }
   }
 };

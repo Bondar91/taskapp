@@ -20,7 +20,6 @@ const store = new Vuex.Store({
           //   console.log(column);
           // eslint-disable-next-line no-restricted-syntax
           for (const task of column.tasks) {
-            console.log(task.id === id);
             if (task.id === id) {
               return task;
             }
@@ -40,7 +39,12 @@ const store = new Vuex.Store({
     UPDATE_TASK(state, { task, description, type }) {
       task.description = description;
       task.type = type;
-      //   task[key] = value;
+    },
+    DELETE_TASK(state, { indexColumn, indexTask }) {
+      //   console.log(this.tasks);
+      //   Vue.delete(state.board.columns[indexColumn].tasks[indexTask]);
+      //   console.log(state.board.columns[indexColumn].tasks);
+      state.board.columns[indexColumn].tasks.splice(indexTask, 1);
     }
   },
   actions: {},
