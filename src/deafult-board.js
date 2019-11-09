@@ -7,18 +7,17 @@ export default {
       status: "oczekujące",
       tasks: [
         {
-          description:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, atque quaerat! Repudiandae reprehenderit culpa, fuga reiciendis veritatis nostrum suscipit animi.",
+          description: "Zrób pizze!",
           id: uuid(),
           type: "feature"
         },
         {
-          description: "Lorem ipsum dolor sit amet.",
+          description: "Posprzątaj swój pokój",
           id: uuid(),
           type: "bugfix"
         },
         {
-          description: "Lorem, ipsum dolor.",
+          description: "Umyj okna",
           id: uuid(),
           type: "default"
         }
@@ -28,17 +27,17 @@ export default {
       status: "w realizacji",
       tasks: [
         {
-          description: "",
+          description: "Kup marchewkę, paprykę i pomidory",
           id: uuid(),
           type: "default"
         },
         {
-          description: "Lorem ipsum dolor sit amet.",
+          description: "Zatankuj samochód",
           id: uuid(),
           type: "bugfix"
         },
         {
-          description: "Lorem, ipsum dolor.",
+          description: "Naczynia czekają. Pozmywaj!",
           id: uuid(),
           type: "feature"
         }
@@ -48,12 +47,12 @@ export default {
       status: "zakończone",
       tasks: [
         {
-          description: "",
+          description: "Kup niebieską farbę i pomaluj ścianę w kuchni",
           id: uuid(),
           type: "feature"
         },
         {
-          description: "Lorem ipsum dolor sit amet.",
+          description: "Złóż zyczenia urodzinowe dla Babci",
           id: uuid(),
           type: "feature"
         }

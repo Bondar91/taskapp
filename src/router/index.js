@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 // eslint-disable-next-line import/no-unresolved
 import Board from "@/views/Board.vue";
-import Task from "@/views/Task.vue";
+import TaskEdit from "@/views/TaskEdit.vue";
 
 Vue.use(Router);
 
@@ -16,8 +16,8 @@ export default new Router({
       children: [
         {
           path: "task/:id",
-          name: "task",
-          component: Task
+          name: "taskEdit",
+          component: TaskEdit
         }
       ]
     }

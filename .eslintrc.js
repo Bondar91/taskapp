@@ -20,7 +20,9 @@ module.exports = {
     "import/no-default-export": "true",
     "comma-dangle": ["error", "never"],
     "no-param-reassign": 0,
-    "max-len": 0
+    "max-len": 0,
+    "no-trailing-spaces": "error"
+    // "object-curly-newline": ["error", { multiline: true }]
   },
   parserOptions: {
     parser: "babel-eslint"

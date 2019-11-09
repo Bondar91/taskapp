@@ -1,7 +1,10 @@
 <template>
   <div class="task-view">
+    <div class="alert alert-success" v-if="alert">
+      <h4>{{alertMessageText}}</h4>
+    </div>
     <div class="task-view-wrapper">
-      <h1 class="heading">Create new task</h1>
+      <h1 class="heading">Edit task id: {{task.id}}</h1>
       <div class="form">
         <div class="form-group">
           <label for="description" class="form-label">Description Task</label>
@@ -36,7 +39,9 @@ export default {
   data() {
     return {
       description: "",
-      type: ""
+      type: "",
+      alert: false,
+      alertMessageText: ""
     };
   },
   computed: {
@@ -49,13 +54,24 @@ export default {
     close() {
       this.$router.push({ name: "board" });
     },
+    alertMessage() {
+      this.alert = true;
+      this.alertMessageText = "Task updated correctly!";
+
+      let timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.alert = false;
+        this.close();
+      }, 3000);
+    },
     updateTask() {
       this.$store.commit("UPDATE_TASK", {
         task: this.task,
         description: this.$refs.description.value,
         type: this.$refs.type.value
       });
-      this.close();
+      this.alertMessage();
     }
   }
 };
@@ -150,5 +166,24 @@ export default {
 .heading {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 2rem;
+  &-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
 }
 </style>
